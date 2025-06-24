@@ -20,7 +20,3 @@ class Todos(UUID):
     description = models.TextField()
 
     status = models.CharField(max_length=10, choices=Status.choices)
-
-    class Meta:
-        unique_together = ('user',)
-        ordering = ['-created_at']
