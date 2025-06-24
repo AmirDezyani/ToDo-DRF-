@@ -55,6 +55,15 @@ class TodoTest(APITestCase):
         response = self.client.put(url , payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_partial_update_todo(self):
+        url = self.detail_url(self.todo.pk)
+        response = self.client.patch(url,
+                                     {'status': Todos.Status.Done},
+                                     format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.todo.refresh_from_db()
+        self.assertEqual(self.todo.status, Todos.Status.Done)
+
     def test_delete_todo(self):
         url = self.detail_url(self.todo.pk)
         response = self.client.delete(url)
