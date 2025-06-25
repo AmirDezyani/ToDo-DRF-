@@ -7,5 +7,5 @@ profile_detail = ProfileViewSet.as_view({'get':'retrieve','put':'update','patch'
 
 urlpatterns = [
     path('', profile_list, name='profile-list'),
-    path('<uuid:pk>', profile_detail, name='profile-detail'),
+    path('<int:pk>', profile_detail, name='profile-detail'),
 ]
